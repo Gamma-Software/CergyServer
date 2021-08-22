@@ -13,8 +13,8 @@ RUN apt-get install -qy curl && \
 # Add user
 RUN useradd -rm -d /home/visualstudio -s /bin/bash -G sudo -u 1000 visualstudio && \
     echo 'visualstudio:visualstudio' | chpasswd && \
-    echo "sudouser ALL=(ALL) ALL" >> /etc/sudoers && \
-    echo "visualstudio ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+    echo "sudouser ALL=(ALL) ALL, !/bin/su" >> /etc/sudoers && \
+    echo "visualstudio ALL=(ALL) NOPASSWD:ALL, !/bin/su" >> /etc/sudoers
 
 # Install ssh server
 RUN apt-get install -y openssh-server && \
